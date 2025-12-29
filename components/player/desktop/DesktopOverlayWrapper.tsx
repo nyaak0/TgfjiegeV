@@ -19,9 +19,9 @@ interface DesktopOverlayWrapperProps {
     playbackRate: number;
     showSpeedMenu: boolean;
     speeds: number[];
-    onToggleMoreMenu?: () => void; // Unused but kept for type safety if needed
     onToggleSpeedMenu: () => void;
     onSpeedChange: (speed: number) => void;
+    onSpeedMenuMouseEnter: () => void;
     onSpeedMenuMouseLeave: () => void;
     containerRef: React.RefObject<HTMLDivElement | null>;
 }
@@ -36,8 +36,6 @@ export function DesktopOverlayWrapper({
     showMoreMenu,
     isProxied,
     onToggleMoreMenu,
-    onMouseEnter, // Note: The prop name was actually missing in destructuring or renamed? Let me check previous view_file.
-    // Wait, the previous view_file of DesktopOverlayWrapper had these:
     onMoreMenuMouseEnter,
     onMoreMenuMouseLeave,
     onCopyLink,

@@ -202,5 +202,6 @@ export function useAutoSkip({
     return {
         hasSkippedIntro: hasSkippedIntroRef.current,
         hasTriggeredOutroSkip: hasTriggeredOutroSkipRef.current,
+        isOutroActive,
     };
 }
