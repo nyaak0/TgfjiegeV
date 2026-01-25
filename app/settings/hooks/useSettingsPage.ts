@@ -28,6 +28,7 @@ export function useSettingsPage() {
     const [searchDisplayMode, setSearchDisplayMode] = useState<SearchDisplayMode>('normal');
     const [fullscreenType, setFullscreenType] = useState<'native' | 'window'>('native');
     const [proxyMode, setProxyMode] = useState<ProxyMode>('retry');
+    const [rememberScrollPosition, setRememberScrollPosition] = useState(true);
 
     useEffect(() => {
         const settings = settingsStore.getSettings();
@@ -40,6 +41,7 @@ export function useSettingsPage() {
         setSearchDisplayMode(settings.searchDisplayMode);
         setFullscreenType(settings.fullscreenType);
         setProxyMode(settings.proxyMode);
+        setRememberScrollPosition(settings.rememberScrollPosition);
 
         // Fetch env password status
         fetch('/api/config')
@@ -301,6 +303,15 @@ export function useSettingsPage() {
         });
     };
 
+    const handleRememberScrollPositionChange = (enabled: boolean) => {
+        setRememberScrollPosition(enabled);
+        const currentSettings = settingsStore.getSettings();
+        settingsStore.saveSettings({
+            ...currentSettings,
+            rememberScrollPosition: enabled,
+        });
+    };
+
     const handleRestoreDefaults = () => {
         const defaults = getDefaultSources();
         handleSourcesChange(defaults);
@@ -355,5 +366,7 @@ export function useSettingsPage() {
         handleFullscreenTypeChange,
         proxyMode,
         handleProxyModeChange,
+        rememberScrollPosition,
+        handleRememberScrollPositionChange,
     };
 }

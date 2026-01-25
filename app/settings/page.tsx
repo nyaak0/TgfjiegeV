@@ -57,6 +57,8 @@ export default function SettingsPage() {
     handleFullscreenTypeChange,
     proxyMode,
     handleProxyModeChange,
+    rememberScrollPosition,
+    handleRememberScrollPositionChange,
   } = useSettingsPage();
 
   return (
@@ -87,8 +89,10 @@ export default function SettingsPage() {
         <DisplaySettings
           realtimeLatency={realtimeLatency}
           searchDisplayMode={searchDisplayMode}
+          rememberScrollPosition={rememberScrollPosition}
           onRealtimeLatencyChange={handleRealtimeLatencyChange}
           onSearchDisplayModeChange={handleSearchDisplayModeChange}
+          onRememberScrollPositionChange={handleRememberScrollPositionChange}
         />
 
         {/* Source Management */}
